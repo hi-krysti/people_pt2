@@ -1,0 +1,82 @@
+// 1. 
+db.people.insertOne({ first_name: "Billie", 
+last_name: "Jones", 
+email: "beejones@gmail.com",
+gender: "Female",
+age: 53,
+state: "Vermont",
+children: []})
+
+
+// 2. 
+db.people.insertOne({ first_name: "Jack", 
+last_name: "Hubbard", 
+email: "jhubb@gmail.com",
+gender: "Male",
+age: 28,
+state: "North Dakota",
+children: [{name: "Jill", age: 10}, {name: "Jack", age: 4}]})
+
+
+// 3. 
+db.people.updateOne({first_name: "Clarence"},
+                    {$set: {state: "South Dakota"}})
+
+
+// 4. 
+db.people.updateOne({first_name: "Rebecca"},
+                    {$unset: {email: 1}})
+
+
+// 5. 
+db.people.updateMany({state: "Missouri"}, {$inc: {age: 1}})
+
+
+
+// 6. 
+db.people.replaceOne({ first_name: "Jerry", last_name: "Baker"},
+                     { first_name: "Jerry", last_name: "Baker-Mendez", 
+			email: "jerry@classic.ly", gender: "Male", 
+			age: 28, state: "Vermont", 
+			children: [{name: "Alan", age: 18}, {name: "Jenny", age: 3}]})
+
+
+// 7.
+db.people.deleteOne({first_name: "Wanda"})
+
+
+// 8. 
+db.people.deleteMany({email: null})
+
+
+// 9. 
+db.people.createIndex({email: 1})
+
+
+// 10. 
+db.people.createIndex({first_name: 1, last_name: 1})
+
+
+// 11. 
+db.submissions.insertMany([
+  {title: "The River Bend", upvotes: 10, downvotes: 2, artist: "ID of Anna Howard"},
+  {title: "Nine Lives", upvotes: 7, downvotes: 0, artist: "ID of Scott Henderson"},
+  {title: "Star Bright", upvotes: 19, downvotes: 3, artist: "ID of Andrea Burke"},
+  {title: "Why Like This?", upvotes: 1, downvotes: 5, artist: "ID of Steven Marshall"},
+  {title: "Non Sequitur", upvotes: 11, downvotes: 1, artist: "ID of Gerald Bailey"}])
+
+
+// 12. 
+db.submissions.updateOne({title: "The River Bend"},
+                         {$inc: {upvotes: 2}})
+
+
+// 13. 
+db.submissions.updateMany({upvotes: {$gte: 10}},
+                          {$set: {round2: true}})
+
+
+// 14. 
+db.people.updateOne({first_name: "Helen"},
+                    { $push: {children: {name: "Melanie", age: 0}}})
+
